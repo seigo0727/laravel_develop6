@@ -37261,6 +37261,87 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/admin.js":
+/*!*******************************!*\
+  !*** ./resources/js/admin.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+document.addEventListener('DOMContentLoaded', function () {
+  var btnToggle = document.querySelector('.header .btn-nav-toggle');
+  var sideMenu = document.querySelector('#aside');
+  var sideMenuBackdrop = document.querySelector('.sidebar-backdrop');
+
+  if (btnToggle) {
+    btnToggle.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      if (sideMenu.offsetLeft < 0 && !sideMenu.classList.contains('hide')) {
+        sideMenu.classList.add('show');
+        sideMenuBackdrop.classList.add('show');
+      } else if (sideMenu.classList.contains('hide')) {
+        sideMenu.classList.remove('hide');
+        sideMenuBackdrop.classList.add('show');
+      } else {
+        if (sideMenu.classList.contains('show')) {
+          sideMenu.classList.remove('show');
+        } else {
+          sideMenu.classList.add('hide');
+        }
+
+        sideMenuBackdrop.classList.remove('show');
+      }
+    });
+  } // Sidebar Backdrop
+
+
+  if (sideMenuBackdrop) {
+    sideMenuBackdrop.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      if (sideMenu.classList.contains('show')) {
+        sideMenu.classList.remove('show');
+      } else {
+        sideMenu.classList.add('hide');
+      }
+
+      sideMenuBackdrop.classList.remove('show');
+    });
+  } // Sidebar
+
+
+  var aside = document.querySelector('#aside');
+  var sidebarTop = document.querySelector('#aside .sidebar-top');
+  var sidebarContent = document.querySelector('#aside .sidebar-content');
+
+  if (sidebarContent && sidebarTop) {
+    sidebarContent.style.height = (window.innerHeight - sidebarTop.offsetHeight).toString() + 'px';
+    var sidebarContentObserver = new ResizeObserver(function (entries, observer) {
+      var innerHeight = window.innerHeight;
+      var height = sidebarTop.offsetHeight;
+      sidebarContent.style.height = (innerHeight - height).toString() + 'px';
+    });
+    sidebarContentObserver.observe(sidebarTop);
+    sidebarContentObserver.observe(aside);
+  } // const siteSelector = document.querySelector('#siteSelector');
+  // if(siteSelector){
+  //     siteSelector.addEventListener('change', () => {
+  //         const selectedValue = siteSelector.options[siteSelector.selectedIndex].value;
+  //         let url;
+  //         if("" !== selectedValue && null !== selectedValue) {
+  //             url = window._constants.admin_home_url + "/sites/" + selectedValue;
+  //         } else {
+  //             url = window._constants.admin_home_url;
+  //         }
+  //         window.location.href = url;
+  //     });
+  // }
+
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -37269,6 +37350,8 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! ./admin */ "./resources/js/admin.js");
 
 /***/ }),
 
@@ -37317,6 +37400,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/sass/admin.scss":
+/*!***********************************!*\
+  !*** ./resources/sass/admin.scss ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -37329,14 +37423,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ }),
 
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!*****************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/admin.scss ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel_develop6/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel_develop6/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel6_develop/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel6_develop/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel6_develop/resources/sass/admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

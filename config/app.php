@@ -175,6 +175,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Admin Views...
+         */
+        App\Providers\Admin\SidebarServiceProvider::class,
     ],
 
     /*
