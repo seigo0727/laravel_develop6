@@ -40,4 +40,9 @@ class LoginController extends Controller
     {
         return redirect(route('admin.login'));
     }
+
+    public function username()
+    {
+        return 'name';
+    }
 }

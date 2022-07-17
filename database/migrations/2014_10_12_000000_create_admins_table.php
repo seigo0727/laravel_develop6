@@ -16,14 +16,16 @@ class CreateAdminsTable extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('admin_group_id')->unsigned();
+            $table->bigInteger('admin_group_id')->unsigned();
             $table->string('display_name')->nullable();
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            // 外部ギー設定
+        });
+        Schema::table('admins', function (Blueprint $table) {
+            // 外部キー設定
             $table->foreign('admin_group_id')
                    ->references('id')->on('admin_groups')
                    ->onDelete('cascade');
