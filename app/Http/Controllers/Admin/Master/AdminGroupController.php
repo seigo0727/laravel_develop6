@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Master;
 
 use App\Http\Controllers\Admin\Base\AdminBaseController;
+use App\Models\AdminGroup;
 use Illuminate\Http\Request;
 
-class HomeController extends AdminBaseController
+class AdminGroupController extends AdminBaseController
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    protected $routeName = 'admin.groups';
+    protected $models = [
+        'item' => AdminGroup::class,
+    ];
 
     /**
      * Display a listing of the resource.
@@ -19,7 +20,7 @@ class HomeController extends AdminBaseController
      */
     public function index()
     {
-        return view('admin.home');
+        return parent::index();
     }
 
     /**
@@ -29,7 +30,7 @@ class HomeController extends AdminBaseController
      */
     public function create()
     {
-        //
+        return parent::create();
     }
 
     /**
@@ -62,7 +63,7 @@ class HomeController extends AdminBaseController
      */
     public function edit($id)
     {
-        //
+        return parent::edit($id);
     }
 
     /**
@@ -87,4 +88,40 @@ class HomeController extends AdminBaseController
     {
         //
     }
+
+    public function createForms()
+    {
+        $forms = [];
+        $groups = AdminGroup::all();
+
+        $forms = [
+            $this->form->Text([
+                'label' => '名前',
+                'name' => 'name',
+                'required' => true,
+            ]),
+    
+            $this->form->Text([
+                'label' => '表示名',
+                'name' => 'display_name',
+                'required' => true,
+            ]),
+    
+            $this->form->Text([
+                'label' => 'レベル',
+                'name' => 'level',
+                'required' => false,
+            ]),
+
+            $this->form->Textarea([
+                'label' => '説明',
+                'name' => 'description',
+                'required' => false,
+            ]),
+    
+        ];
+
+        return $forms;
+    }
+
 }

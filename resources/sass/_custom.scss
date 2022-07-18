@@ -226,9 +226,15 @@ body {
     font-size: 0.8rem;
     text-align: right;
   
-    // .copyright {
-    //   color: $body-text-color-muted;
-    // }
+    .copyright {
+      color: $body-text-color-muted;
+    }
+  }
+  
+  span {
+    .required {
+      color: #f00;
+    }
   }
   
   .sidebar-backdrop {

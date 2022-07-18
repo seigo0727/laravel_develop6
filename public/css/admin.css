@@ -11185,6 +11185,14 @@ body {
   text-align: right;
 }
 
+.footer .copyright {
+  color: #5b585f;
+}
+
+span .required {
+  color: #f00;
+}
+
 .sidebar-backdrop {
   background: rgba(20, 20, 20, 0.6);
   position: fixed;
